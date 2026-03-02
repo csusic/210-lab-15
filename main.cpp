@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <vector>
 #include <fstream>
 using namespace std;
@@ -28,8 +29,8 @@ public:
 };
 
 int main() {
-    vector<Movie> movies;
-    ifstream fin ("input.txt");
+    vector<Movie> movies; //vector
+    ifstream fin ("input.txt"); //read from input file
     string m;  //temp movie title
     int r; //temp release year
     string s;  //temp screenwriter
@@ -40,11 +41,12 @@ int main() {
             fin >> r; 
             fin.ignore();
             getline(fin, s);
-            //temp class
+            //temp Movie object
             Movie tmp;
             tmp.setMovitTitle(m);
             tmp.setReleaseYear(r);
             tmp.setScreenwriter(s);
+            //push data into vector
             movies.push_back(tmp);
         }
         fin.close();
@@ -59,7 +61,6 @@ int main() {
         cout << "\tScreenwriter: " << val.getScreenwriter() << endl;
         cout << endl;
     }
-    cout << endl;
     
     return 0;
 }
