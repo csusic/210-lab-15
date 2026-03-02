@@ -12,11 +12,11 @@ private:
     int releaseYear;
 public:
     //setter and getter functions
-    int getMovieTitle() const            {return movieTitle;}      
-    void setMovitTitle (string s)        {movieTitle = m;} 
+    string getMovieTitle() const         {return movieTitle;}      
+    void setMovitTitle (string m)        {movieTitle = m;} 
     int getReleaseYear() const           {return releaseYear;}      
-    void setReleaseYear (string s)       {releaseYear = r;} 
-    int getScreenwriter() const          {return screenwriter;}      
+    void setReleaseYear (int r)          {releaseYear = r;} 
+    string getScreenwriter() const       {return screenwriter;}      
     void setScreenwriter (string s)      {screenwriter = s;}
     //print function
     void print() {
@@ -34,6 +34,26 @@ public:
 int main() {
     vector<Movie> movies;
     ifstream fin ("input.txt");
+    string m;  //temp movie title
+    int r; //temp release year
+    string s;  //temp screenwriter
+    
+    if (fin.good()) {
+        while (getline(fin, m)) {
+            fin >> r; 
+            fin.ignore();
+            getline(fin, s);
+            //temp class
+            Movie tmp;
+            tmp.setMovitTitle(m);
+            tmp.setReleaseYear(r);
+            tmp.setScreenwriter(s);
+            movies.push_back(tmp);
+        }
+        fin.close();
+    }
+    else
+        cout << "Input file not found.\n";
     
     return 0;
 }
