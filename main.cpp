@@ -2,9 +2,9 @@
 
 #include <iostream>
 #include <iomanip>
+#include <vector>
+#include <fstream>
 using namespace std;
-
-const int W1 = 10, W2 = 8;
 
 class Movie {
 private:
@@ -20,13 +20,9 @@ public:
     void setScreenwriter (string s)      {screenwriter = s;}
     //print function
     void print() {
-        cout << left;
-        cout << "Movie: ";
-        cout << movieTitle << endl;
-        cout << setw(W1) << "Year released: ";
-        cout << setw(W2) << releaseYear << endl;
-        cout << setw(W1) << "Screenwriter: ";
-        cout << setw(W2) << screenwriter << endl;
+        cout << "Movie: " << movieTitle << endl;
+        cout << "\tYear released: " << releaseYear << endl;
+        cout << "\tScreenwriter: " << screenwriter << endl;
         cout << endl;
     }
 };
@@ -38,6 +34,7 @@ int main() {
     int r; //temp release year
     string s;  //temp screenwriter
     
+    //read from file into vector
     if (fin.good()) {
         while (getline(fin, m)) {
             fin >> r; 
@@ -54,6 +51,15 @@ int main() {
     }
     else
         cout << "Input file not found.\n";
+        
+    //output vector
+    for (auto val : movies) {
+        cout << "Movie: " << val.getMovieTitle() << endl;
+        cout << "\tYear released: " << val.getReleaseYear() << endl; 
+        cout << "\tScreenwriter: " << val.getScreenwriter() << endl;
+        cout << endl;
+    }
+    cout << endl;
     
     return 0;
 }
